@@ -25,6 +25,7 @@ public class ClienteService {
 			cli.setCliNom(cliente.getCliNom());
 			cli.setCliDir(cliente.getCliDir());
 			cli.setCliTel(cliente.getCliTel());
+			cli.setComuna(cliente.getComuna());
 			return iClienteDAO.save(cli);
 		}).orElseThrow(() -> new ResourceNotFoundException("El id " + cliId  + " de cliente no existe"));
 	}

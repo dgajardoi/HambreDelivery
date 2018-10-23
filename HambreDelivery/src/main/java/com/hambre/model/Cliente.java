@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +30,10 @@ public class Cliente {
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Venta> venta;
+	
+	@ManyToOne
+	@JoinColumn( name = "cmn_cli_id")
+	private Comuna comuna;
 
 	public int getCliId() {
 		return cliId;
@@ -60,5 +66,14 @@ public class Cliente {
 	public void setCliDir(String cliDir) {
 		this.cliDir = cliDir;
 	}
+
+	public Comuna getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(Comuna comuna) {
+		this.comuna = comuna;
+	}
+	
 	
 }
