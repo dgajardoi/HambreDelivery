@@ -1,6 +1,7 @@
 package com.hambre.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,6 +30,11 @@ public class ComboController {
 	@GetMapping("combo")
 	public ResponseEntity<List<Combo>> getAllCombo(){
 			return new ResponseEntity<>(comboService.getAllCombo(),  HttpStatus.OK);
+		}
+	
+	@GetMapping("comboAll")
+	public ResponseEntity<List<Map<String, Object>>> getDescripcionCombo(){
+			return new ResponseEntity<>(comboService.getDescripcionForAllCombo(),  HttpStatus.OK);
 		}
 	
 	@GetMapping("combo/{comId}")

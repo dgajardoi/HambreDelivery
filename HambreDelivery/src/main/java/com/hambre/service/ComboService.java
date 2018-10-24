@@ -1,6 +1,10 @@
 package com.hambre.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -18,6 +22,28 @@ public class ComboService {
 	
 	public Combo createCombo( Combo combo) {
 		return iComboDAO.save(combo);
+	}
+	
+	public List<Map<String, Object>> getDescripcionForAllCombo( ) {
+		List<Object> obj = new ArrayList<>();
+		List<Map<String, Object>> listMap = new ArrayList<>();
+		obj = iComboDAO.getDescripcionForAllCombo();
+		System.out.println("largo1:" + obj.size());
+		System.out.println(obj.get(0).toString().charAt(0));
+		for(int i = 0 ; i < obj.size() ; i++) {
+			Object[] row = (Object[]) obj.get(i);
+			Map<String, Object> map = new HashMap<>();
+			map.put("comId", row[0]);
+			map.put("comNom", row[1]);
+			map.put("comPrc", row[2]);
+			map.put("tipPrdNom", row[3]);
+			map.put("medNom", row[4]);
+			map.put("comDes", row[3]  + " "  + row[4] );
+			listMap.add(map);
+		}
+		
+		
+		return listMap;
 	}
 	
 	public Combo updateCombo( Integer comId, Combo combo) {

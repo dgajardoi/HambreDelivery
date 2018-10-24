@@ -32,6 +32,11 @@ public class ClienteController {
 			return new ResponseEntity<>(clienteService.getAllCliente(),  HttpStatus.OK);
 		}
 	
+	@GetMapping("clienteFono/{cliTel}")
+	public ResponseEntity<Cliente> getTelefonoCliente(@PathVariable String cliTel){
+			return new ResponseEntity<>(clienteService.getTelefonoPorCliente(cliTel),  HttpStatus.OK);
+		}
+	
 	@GetMapping("cliente/{cliId}")
 	public ResponseEntity<Cliente> getByIdCliente(@PathVariable Integer cliId){
 			return new ResponseEntity<>(clienteService.getByIdCliente(cliId), HttpStatus.FOUND);

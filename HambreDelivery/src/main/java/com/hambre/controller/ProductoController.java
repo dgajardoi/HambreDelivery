@@ -1,6 +1,7 @@
 package com.hambre.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,6 +31,11 @@ public class ProductoController {
 	@GetMapping("producto")
 	public ResponseEntity<List<Producto>> getAllProducto(){
 			return new ResponseEntity<>(productoService.getAllProducto(),  HttpStatus.OK);
+		}
+	
+	@GetMapping("productoPedido")
+	public ResponseEntity<List<Map<String, Object>>> getProductosPedido(){
+			return new ResponseEntity<>(productoService.getProductosPedido(),  HttpStatus.OK);
 		}
 	
 	@GetMapping("producto/{prdId}")

@@ -20,6 +20,14 @@ public class ClienteService {
 		return iClienteDAO.save(cliente);
 	}
 	
+	public Cliente getTelefonoPorCliente( String  cliTel) {
+		Cliente cli = iClienteDAO.getTelefonoPorCliente(cliTel);
+		if( cli != null) {
+			return iClienteDAO.getTelefonoPorCliente(cliTel);
+		}
+		return null;
+	}
+	
 	public Cliente updateCliente( Integer cliId, Cliente cliente) {
 		return iClienteDAO.findById(cliId).map( cli  -> {
 			cli.setCliNom(cliente.getCliNom());
