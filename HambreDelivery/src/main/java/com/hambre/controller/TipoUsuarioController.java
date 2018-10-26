@@ -27,27 +27,27 @@ public class TipoUsuarioController {
 	@Qualifier("tipoUsuarioService")
 	TipoUsuarioService tipoUsuarioService;
 	
-	@GetMapping("tipoUsuario")
+	@GetMapping("tipo-usuarios/listar")
 	public ResponseEntity<List<TipoUsuario>> getAllTipoUsuario(){
 			return new ResponseEntity<>(tipoUsuarioService.getAllTipoUsuario(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("tipoUsuario/{tipUsuId}")
+	@GetMapping("tipo-usuarios/{tipUsuId}/datos")
 	public ResponseEntity<TipoUsuario> getByIdTipoUsuario(@PathVariable Integer tipUsuId){
 			return new ResponseEntity<>(tipoUsuarioService.getByIdTipoUsuario(tipUsuId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("tipoUsuario")
+	@PutMapping("tipo-usuarios/editar")
 	public ResponseEntity<TipoUsuario> updateTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
 		return new ResponseEntity<>(tipoUsuarioService.updateTipoUsuario(tipoUsuario), HttpStatus.OK);
 	}
 	
-	@PostMapping("tipoUsuario")
+	@PostMapping("tipo-usuarios/crear")
 	public ResponseEntity<TipoUsuario> createTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
 		return new ResponseEntity<>(tipoUsuarioService.createTipoUsuario(tipoUsuario), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("tipoUsuario/{tipUsuId}")
+	@DeleteMapping("tipo-usuarios/{tipUsuId}/eliminar")
 	public ResponseEntity<?> deleteTipoUsuario (@PathVariable Integer tipUsuId) {
 		return new ResponseEntity<>(tipoUsuarioService.removeTipoUsuarioId(tipUsuId), HttpStatus.OK);
 	}

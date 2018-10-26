@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hambre.model.Ciudad;
 import com.hambre.service.CiudadService;
@@ -27,27 +28,28 @@ public class CiudadController {
 	@Qualifier("ciudadService")
 	CiudadService ciudadService;
 	
-	@GetMapping("ciudad")
+	@GetMapping(value = "ciudades/listar")
 	public ResponseEntity<List<Ciudad>> getAllCiudad(){
 			return new ResponseEntity<>(ciudadService.getAllCiudad(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("ciudad/{ciuId}")
-	public ResponseEntity<Ciudad> getByIdProducto(@PathVariable Integer ciuId){
+	
+	@GetMapping(value = "ciudades/{ciuId}/datos")
+	public ResponseEntity<Ciudad> getByIdCiudad(@PathVariable Integer ciuId){
 			return new ResponseEntity<>(ciudadService.getByIdCiudad(ciuId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("ciudad/{ciuId}")
-	public ResponseEntity<Ciudad> updateProducto(@PathVariable Integer ciuId, @RequestBody Ciudad ciudad) {
+	@PutMapping(value = "ciudades/{ciuId}/editar")
+	public ResponseEntity<Ciudad> updateCiudad(@PathVariable Integer ciuId, @RequestBody Ciudad ciudad) {
 		return new ResponseEntity<>(ciudadService.updateCiudad(ciuId, ciudad), HttpStatus.OK);
 	}
 	
-	@PostMapping("ciudad")
-	public ResponseEntity<Ciudad> createProducto(@RequestBody Ciudad ciudad) {
+	@PostMapping(value = "ciudad/crear")
+	public ResponseEntity<Ciudad> createCiudad(@RequestBody Ciudad ciudad) {
 		return new ResponseEntity<>(ciudadService.createCiudad(ciudad), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("ciudad/{ciuId}")
+	@DeleteMapping(value = "ciudades/{ciuId}/eliminar")
 	public ResponseEntity<?> deleteCiudad (@PathVariable Integer ciuId) {
 		return new ResponseEntity<>(ciudadService.removeByIdCiudad(ciuId), HttpStatus.OK);
 	}

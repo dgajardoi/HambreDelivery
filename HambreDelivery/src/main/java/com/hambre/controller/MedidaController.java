@@ -27,27 +27,27 @@ public class MedidaController {
 	@Qualifier("medidaService")
 	MedidaService medidaService;
 	
-	@GetMapping("medida")
+	@GetMapping("medidas/listar")
 	public ResponseEntity<List<Medida>> getAllMedida(){
 			return new ResponseEntity<>(medidaService.getAllMedida(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("medida/{medId}")
+	@GetMapping("medidas/{medId}/datos")
 	public ResponseEntity<Medida> getByIdMedida(@PathVariable Integer medId){
 			return new ResponseEntity<>(medidaService.getByIdMedida(medId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("medida/{medId}")
+	@PutMapping("medidas/{medId}/editar")
 	public ResponseEntity<Medida> updateMedida(@PathVariable Integer medId, @RequestBody Medida medida) {
 		return new ResponseEntity<>(medidaService.updateMedida(medId, medida), HttpStatus.OK);
 	}
 	
-	@PostMapping("medida")
+	@PostMapping("medida/crear")
 	public ResponseEntity<Medida> createMedida(@RequestBody Medida medida) {
 		return new ResponseEntity<>(medidaService.createMedida(medida), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("medida/{medId}")
+	@DeleteMapping("medidas/{medId}/eliminar")
 	public ResponseEntity<?> deleteMedida (@PathVariable Integer medId) {
 		return new ResponseEntity<>(medidaService.removeByIdMedida(medId), HttpStatus.OK);
 	}

@@ -43,6 +43,14 @@ public class UserDTO {
 	public void setPasswordAdmin(String passwordAdmin) {
 		this.passwordAdmin = passwordAdmin;
 	}
+
+	public int getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
 	
 	
 }

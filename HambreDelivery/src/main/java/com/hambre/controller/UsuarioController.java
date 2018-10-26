@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hambre.dto.UserDTO;
 import com.hambre.model.TipoUsuario;
 import com.hambre.model.Usuario;
 import com.hambre.service.TipoUsuarioService;
@@ -29,27 +30,27 @@ public class UsuarioController {
 	@Qualifier("usuarioService")
 	UsuarioService usuarioService;
 	
-	@GetMapping("usuario")
+	@GetMapping("usuarios/listar")
 	public ResponseEntity<List<Usuario>> getAllUsuario(){
 			return  new ResponseEntity<> ( usuarioService.getAllTipoUsuario(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("usuario/{tipUsuId}")
+	@GetMapping("usuarios/{tipUsuId}/datos")
 	public ResponseEntity<Usuario> getByIdUsuario(@PathVariable Integer tipUsuId){
 			return new ResponseEntity<>( usuarioService.getByIdUsuario(tipUsuId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("usuario")
+	@PutMapping("usuarios/editar")
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
 		return new ResponseEntity<>( usuarioService.updateUsuario(usuario), HttpStatus.OK);
 	}
 	
-	@PostMapping("usuario")
-	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
+	@PostMapping("usuario/crear")
+	public ResponseEntity<UserDTO> createUsuario(@RequestBody UserDTO usuario) {
 		return new ResponseEntity<>( usuarioService.createUsuario(usuario), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("usuario/{tipUsuId}")
+	@DeleteMapping("usuarios/{tipUsuId}/eliminar")
 	public ResponseEntity<?> deleteTipoUsuario (@PathVariable Integer tipUsuId) {
 		return new ResponseEntity<>( usuarioService.removeUsuarioId(tipUsuId),  HttpStatus.OK);
 	}

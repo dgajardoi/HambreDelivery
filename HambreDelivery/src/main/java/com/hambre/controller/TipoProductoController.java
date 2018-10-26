@@ -29,27 +29,27 @@ public class TipoProductoController {
 	@Qualifier("tipoProductoService")
 	TipoProductoService tipoProductoService;
 	
-	@GetMapping("tipoProducto")
+	@GetMapping("tipo-productos/listar")
 	public ResponseEntity<List<TipoProducto>> getAllTipoProducto(){
 			return new ResponseEntity<>(tipoProductoService.getAllTipoProducto(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("tipoProducto/{tipPrdId}")
+	@GetMapping("tipo-productos/{tipPrdId}/datos")
 	public ResponseEntity<TipoProducto> getByIdTipoProducto(@PathVariable Integer tipPrdId){
 			return new ResponseEntity<>(tipoProductoService.getByIdTipoProducto(tipPrdId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("tipoProducto/{tipPrdId}")
+	@PutMapping("tipo-productos/{tipPrdId}/editar")
 	public ResponseEntity<TipoProducto> updateTipoProducto(@PathVariable Integer tipPrdId, @RequestBody TipoProducto tipoProducto) {
 		return new ResponseEntity<>(tipoProductoService.updateTipoProducto(tipPrdId, tipoProducto), HttpStatus.OK);
 	}
 	
-	@PostMapping("tipoProducto")
+	@PostMapping("tipo-producto/crear")
 	public ResponseEntity<TipoProducto> createTipoProducto(@RequestBody TipoProducto tipoProducto) {
 		return new ResponseEntity<>(tipoProductoService.createTipoProducto(tipoProducto), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("tipoProducto/{tipPrdId}")
+	@DeleteMapping("tipo-productos/{tipPrdId}/eliminar")
 	public ResponseEntity<?> deleteTipoProducto (@PathVariable Integer tipPrdId) {
 		return new ResponseEntity<>(tipoProductoService.removeByIdTipoProducto(tipPrdId), HttpStatus.OK);
 	}

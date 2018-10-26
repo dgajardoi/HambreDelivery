@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hambre.model.Ciudad;
 import com.hambre.model.Comuna;
@@ -29,27 +30,27 @@ public class ComunaController {
 	@Qualifier("comunaService")
 	ComunaService comunaService;
 	
-	@GetMapping("comuna")
+	@GetMapping(value = "comunas/listar" )
 	public ResponseEntity<List<Comuna>> getAllComuna(){
 			return new ResponseEntity<>(comunaService.getAllComuna(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("comuna/{cmnId}")
+	@GetMapping(value = "comunas/{cmnId}/datos")
 	public ResponseEntity<Comuna> getByIdComuna(@PathVariable Integer cmnId){
 			return new ResponseEntity<>(comunaService.getByIdComuna(cmnId), HttpStatus.FOUND);
 		}
-	
-	@PutMapping("comuna/{cmnId}")
+
+	@PutMapping(value = "comunas/{cmnId}/editar")
 	public ResponseEntity<Comuna> updateProducto(@PathVariable Integer cmnId, @RequestBody Comuna comuna) {
 		return new ResponseEntity<>(comunaService.updateComuna(cmnId, comuna), HttpStatus.OK);
 	}
 	
-	@PostMapping("comuna")
+	@PostMapping(value = "comuna/crear")
 	public ResponseEntity<Comuna> createProducto(@RequestBody Comuna comuna) {
 		return new ResponseEntity<>(comunaService.createComuna(comuna), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("comuna/{cmnId}")
+	@DeleteMapping(value = "comunas/{cmnId}/eliminar")
 	public ResponseEntity<?> deleteCiudad (@PathVariable Integer cmnId) {
 		return new ResponseEntity<>(comunaService.removeByIdComuna(cmnId), HttpStatus.OK);
 	}

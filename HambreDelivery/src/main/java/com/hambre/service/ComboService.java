@@ -30,8 +30,8 @@ public class ComboService {
 		obj = iComboDAO.getDescripcionForAllCombo();
 		System.out.println("largo1:" + obj.size());
 		System.out.println(obj.get(0).toString().charAt(0));
-		for(int i = 0 ; i < obj.size() ; i++) {
-			Object[] row = (Object[]) obj.get(i);
+		if(obj.size() > 0) {
+			Object[] row = (Object[]) obj.get(0);
 			Map<String, Object> map = new HashMap<>();
 			map.put("comId", row[0]);
 			map.put("comNom", row[1]);
@@ -39,10 +39,27 @@ public class ComboService {
 			map.put("tipPrdNom", row[3]);
 			map.put("medNom", row[4]);
 			map.put("comDes", row[3]  + " "  + row[4] );
+			for(int i = 1 ; i < obj.size() ; i++) {
+				row = (Object[]) obj.get(i);
+				if(map.get("comId") ==  row[0]) {
+					map.put("comDes", map.get("comDes")+ " + " + row[3]  + " "  + row[4] );
+				}
+				else {
+					listMap.add(map);
+					System.out.println(map);
+					map = new HashMap<>();
+					map.put("comId", row[0]);
+					map.put("comNom", row[1]);
+					map.put("comPrc", row[2]);
+					map.put("tipPrdNom", row[3]);
+					map.put("medNom", row[4]);
+					map.put("comDes", row[3]  + " "  + row[4] );
+				}
+				
+			}
 			listMap.add(map);
 		}
-		
-		
+		System.out.println(listMap);
 		return listMap;
 	}
 	

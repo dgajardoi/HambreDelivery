@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hambre.model.Combo;
 import com.hambre.service.ComboService;
@@ -27,32 +28,32 @@ public class ComboController {
 	@Qualifier("comboService")
 	ComboService comboService;
 	
-	@GetMapping("combo")
+	@GetMapping(value = "combos/listar")
 	public ResponseEntity<List<Combo>> getAllCombo(){
 			return new ResponseEntity<>(comboService.getAllCombo(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("comboAll")
+	@GetMapping(value = "combos/descripcion/listar")
 	public ResponseEntity<List<Map<String, Object>>> getDescripcionCombo(){
 			return new ResponseEntity<>(comboService.getDescripcionForAllCombo(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("combo/{comId}")
+	@GetMapping(value = "combos/{comId}/datos")
 	public ResponseEntity<Combo> getByIdCombo(@PathVariable Integer comId){
 			return new ResponseEntity<>(comboService.getByIdCombo(comId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("combo/{comId}")
+	@PutMapping(value = "combos/{comId}/editar")
 	public ResponseEntity<Combo> updateCombo(@PathVariable Integer comId, @RequestBody Combo combo) {
 		return new ResponseEntity<>(comboService.updateCombo(comId, combo), HttpStatus.OK);
 	}
 	
-	@PostMapping("combo")
+	@PostMapping(value = "combo/crear")
 	public ResponseEntity<Combo> createCombo(@RequestBody Combo combo) {
 		return new ResponseEntity<>(comboService.createCombo(combo), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("combo/{comId}")
+	@DeleteMapping(value = "combos/{comId}/eliminar")
 	public ResponseEntity<?> deleteCombo (@PathVariable Integer comId) {
 		return new ResponseEntity<>(comboService.removeByIdCombo(comId), HttpStatus.OK);
 	}

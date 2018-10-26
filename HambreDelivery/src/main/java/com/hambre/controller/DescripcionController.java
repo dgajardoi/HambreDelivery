@@ -27,27 +27,27 @@ public class DescripcionController {
 	@Qualifier("descripcionService")
 	DescripcionService descripcionService;
 	
-	@GetMapping("descripcion")
+	@GetMapping("descripciones/listar")
 	public ResponseEntity<List<Descripcion>> getAllDescripcion(){
 			return new ResponseEntity<>(descripcionService.getAllDescripcion(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("descripcion/{desId}")
+	@GetMapping("descripciones/{desId}/datos")
 	public ResponseEntity<Descripcion> getByIdDescripcion(@PathVariable Integer desId){
 			return new ResponseEntity<>(descripcionService.getByIdDescripcion(desId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("descripcion/{desId}")
+	@PutMapping("descripciones/{desId}/editar")
 	public ResponseEntity<Descripcion> updateDescripcion(@PathVariable Integer desId, @RequestBody Descripcion descripcion) {
 		return new ResponseEntity<>(descripcionService.updateDescripcion(desId, descripcion), HttpStatus.OK);
 	}
 	
-	@PostMapping("descripcion")
+	@PostMapping("descripcion/crear")
 	public ResponseEntity<Descripcion> createDescripcion(@RequestBody Descripcion descripcion) {
 		return new ResponseEntity<>(descripcionService.createDescripcion(descripcion), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("descripcion/{desId}")
+	@DeleteMapping("descripciones/{desId}/eliminar")
 	public ResponseEntity<?> deleteDescripcion (@PathVariable Integer desId) {
 		return new ResponseEntity<>(descripcionService.removeByIdDescripcion(desId), HttpStatus.OK);
 	}

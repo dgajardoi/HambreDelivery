@@ -28,27 +28,27 @@ public class DetalleComboController {
 	@Qualifier("detalleComboService")
 	DetalleComboService detalleComboService;
 	
-	@GetMapping("detalleCombo")
+	@GetMapping("detalle-combo/listar")
 	public ResponseEntity<List<DetalleCombo>> getAllDetalleProducto(){
 			return new ResponseEntity<>(detalleComboService.getAllDetalleCombo(),  HttpStatus.OK);
 		}
 	
-	@GetMapping("detalleCombo/{dtcId}")
+	@GetMapping("detalle-combo/{dtcId}/datos")
 	public ResponseEntity<DetalleCombo> getByIdDetalleProducto(@PathVariable Integer dtcId){
 			return new ResponseEntity<>(detalleComboService.getByIdDetalleCombo(dtcId), HttpStatus.FOUND);
 		}
 	
-	@PutMapping("detalleCombo/{dtcId}")
+	@PutMapping("detalle-combo/{dtcId}/editar")
 	public ResponseEntity<DetalleCombo> updateDetalleProducto(@PathVariable Integer dtcId, @RequestBody DetalleCombo detalleCombo) {
 		return new ResponseEntity<>(detalleComboService.updateDetalleCombo(dtcId, detalleCombo), HttpStatus.OK);
 	}
 	
-	@PostMapping("detalleCombo")
+	@PostMapping("detalle-combo/crear")
 	public ResponseEntity<DetalleCombo> createDetalleProducto(@RequestBody DetalleCombo detalleCombo) {
 		return new ResponseEntity<>(detalleComboService.createDetalleCombo(detalleCombo), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("detalleCombo/{dtcId}")
+	@DeleteMapping("detalle-combo/{dtcId}/eliminar")
 	public ResponseEntity<?> deleteDetalleProducto (@PathVariable Integer dtcId) {
 		return new ResponseEntity<>(detalleComboService.removeByIdDetalleCombo(dtcId), HttpStatus.OK);
 	}
