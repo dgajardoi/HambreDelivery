@@ -34,7 +34,17 @@ public class Usuario {
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Venta> ventas;
+	public Usuario() {
+		super();
+	}
 	
+	public Usuario(Usuario usuario) {
+		this.usuId = usuario.getUsuId();
+		this.usuNom = usuario.getUsuNom();
+		this.usuPas = usuario.getUsuPas();
+		this.tipoUsuario = usuario.getTipoUsuario();
+	}
+
 	public int getUsuId() {
 		return usuId;
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class UsuarioController {
 	@Qualifier("usuarioService")
 	UsuarioService usuarioService;
 	
+	@PreAuthorize("hasAnyRole('ROLE_Administrador')")
 	@GetMapping("usuarios/listar")
 	public ResponseEntity<List<Usuario>> getAllUsuario(){
 			return  new ResponseEntity<> ( usuarioService.getAllTipoUsuario(),  HttpStatus.OK);
@@ -40,10 +42,12 @@ public class UsuarioController {
 			return new ResponseEntity<>( usuarioService.getByIdUsuario(tipUsuId), HttpStatus.FOUND);
 		}
 	
+	
 	@PutMapping("usuarios/editar")
 	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
 		return new ResponseEntity<>( usuarioService.updateUsuario(usuario), HttpStatus.OK);
 	}
+	
 	
 	@PostMapping("usuario/crear")
 	public ResponseEntity<UserDTO> createUsuario(@RequestBody UserDTO usuario) {
