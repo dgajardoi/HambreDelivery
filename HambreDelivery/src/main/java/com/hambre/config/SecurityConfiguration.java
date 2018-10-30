@@ -41,7 +41,12 @@ protected void configure(HttpSecurity http) throws Exception {
 		return new PasswordEncoder(){	
 			@Override
 			public boolean matches(CharSequence rawPassword, String encodedPassword) {
-				return true;
+				if(rawPassword.equals(encodedPassword)) {
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			
 			@Override
