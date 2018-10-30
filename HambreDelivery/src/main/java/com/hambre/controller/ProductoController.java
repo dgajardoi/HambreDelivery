@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hambre.dto.ProductoDTO;
 import com.hambre.model.Producto;
 import com.hambre.service.ProductoService;
 
@@ -34,7 +35,7 @@ public class ProductoController {
 		}
 	
 	@GetMapping("productos/pedido")
-	public ResponseEntity<List<Map<String, Object>>> getProductosPedido(){
+	public ResponseEntity<List<ProductoDTO>> getProductosPedido(){
 			return new ResponseEntity<>(productoService.getProductosPedido(),  HttpStatus.OK);
 		}
 	

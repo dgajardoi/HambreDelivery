@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hambre.dto.ClienteDTO;
 import com.hambre.model.Cliente;
 import com.hambre.service.ClienteService;
 
@@ -34,7 +35,7 @@ public class ClienteController {
 		}
 	
 	@GetMapping(value = "cliente/telofono/{cliTel}/datos")
-	public ResponseEntity<Cliente> getTelefonoCliente(@PathVariable String cliTel){
+	public ResponseEntity<ClienteDTO> getTelefonoCliente(@PathVariable String cliTel){
 			return new ResponseEntity<>(clienteService.getTelefonoPorCliente(cliTel),  HttpStatus.OK);
 		}
 	
@@ -49,8 +50,12 @@ public class ClienteController {
 	}
 	
 	@PostMapping(value = "cliente/crear")
-	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-		return new ResponseEntity<>(clienteService.createCliente(cliente), HttpStatus.CREATED);
+	public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO cliente) {
+		ClienteDTO clienteDTO = clienteService.createCliente(cliente);
+		if(clienteDTO != null)
+			return new ResponseEntity<>(clienteDTO, HttpStatus.CREATED);
+		else
+			return new ResponseEntity<>(clienteDTO, HttpStatus.NO_CONTENT);
 	}
 	
 	@DeleteMapping(value = "clientes/{cliId}/eliminar")

@@ -10,6 +10,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.hambre.dto.ProductoDTO;
 import com.hambre.model.Producto;
 import com.hambre.repository.IProductoDAO;
 
@@ -24,19 +25,20 @@ public class ProductoService {
 		return iProductoDAO.save(producto);
 	}
 	
-	public List<Map<String, Object>> getProductosPedido() {
+	public List<ProductoDTO> getProductosPedido() {
 		List<Object> obj = new ArrayList<>();
-		List<Map<String, Object>> listMap = new ArrayList<>();
+		List<ProductoDTO> listProductoDTO = new ArrayList<>();
 		obj = iProductoDAO.getProductosPedido();
 		for(int i = 0 ; i < obj.size() ; i++) {
 			Object[] row = (Object[]) obj.get(i);
-			Map<String, Object> map = new HashMap<>();
-			map.put("prdId", row[0]);
-			map.put("prdNom", row[1]);
-			map.put("prdPrc", row[2]);
-			listMap.add(map);
+			ProductoDTO productoDTO = new ProductoDTO();
+			productoDTO.setProductoId((int) row[0]);
+			productoDTO.setProductoNombre((String) row[1]);
+			productoDTO.setProductoPrecio( (int) row[2]);
+			productoDTO.setProductoCantidad(0);
+			listProductoDTO.add(productoDTO);
 		}
-		return listMap;
+		return listProductoDTO;
 	}
 	public Producto updateProducto( Integer prdId, Producto producto) {
 		return iProductoDAO.findById(prdId).map( productoRes  -> {

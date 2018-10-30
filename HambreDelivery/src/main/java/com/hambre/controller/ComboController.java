@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hambre.dto.ComboDTO;
 import com.hambre.model.Combo;
 import com.hambre.service.ComboService;
 
@@ -34,7 +35,7 @@ public class ComboController {
 		}
 	
 	@GetMapping(value = "combos/descripcion/listar")
-	public ResponseEntity<List<Map<String, Object>>> getDescripcionCombo(){
+	public ResponseEntity<List<ComboDTO>> getDescripcionCombo(){
 			return new ResponseEntity<>(comboService.getDescripcionForAllCombo(),  HttpStatus.OK);
 		}
 	

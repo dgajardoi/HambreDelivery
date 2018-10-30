@@ -38,6 +38,10 @@ public class Cliente {
 	@JoinColumn( name = "cmn_cli_id")
 	private Comuna comuna;
 
+	public Cliente() {
+		super();
+	}
+	
 	public int getCliId() {
 		return cliId;
 	}

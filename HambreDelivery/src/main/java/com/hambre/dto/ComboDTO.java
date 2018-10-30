@@ -5,8 +5,7 @@ public class ComboDTO {
 	private int comboPrecio;
 	private int comboCantidad;
 	private String comboNombre;
-	private String tipPrdNom;
-	private String medNom;
+
 	
 	public int getComboId() {
 		return comboId;
@@ -31,18 +30,6 @@ public class ComboDTO {
 	}
 	public void setComboCantidad(int comboCantidad) {
 		this.comboCantidad = comboCantidad;
-	}
-	public String getTipPrdNom() {
-		return tipPrdNom;
-	}
-	public void setTipPrdNom(String tipPrdNom) {
-		this.tipPrdNom = tipPrdNom;
-	}
-	public String getMedNom() {
-		return medNom;
-	}
-	public void setMedNom(String medNom) {
-		this.medNom = medNom;
 	}
 
 	

@@ -7,6 +7,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.hambre.dto.ClienteDTO;
 import com.hambre.model.Cliente;
 import com.hambre.repository.IClienteDAO;
 
@@ -16,14 +17,31 @@ public class ClienteService {
 	@Autowired
 	IClienteDAO iClienteDAO;
 	
-	public Cliente createCliente( Cliente cliente) {
+	/*public Cliente createCliente( Cliente cliente) {
 		return iClienteDAO.save(cliente);
-	}
+	}*/
 	
-	public Cliente getTelefonoPorCliente( String  cliTel) {
+	public ClienteDTO createCliente( ClienteDTO clienteDTO) {
+		Cliente cliente = new Cliente();
+		cliente.setCliTel(clienteDTO.getTelefono());
+		cliente.setCliNom(clienteDTO.getNombre());
+		cliente.setCliDir(clienteDTO.getDireccion());
+		cliente.getComuna().setCmnId(clienteDTO.getComunaId());
+		cliente = iClienteDAO.save(cliente);
+		if(cliente != null)
+			return clienteDTO;
+		return null;
+	}
+
+	public ClienteDTO getTelefonoPorCliente( String  cliTel) {
 		Cliente cli = iClienteDAO.getTelefonoPorCliente(cliTel);
+		ClienteDTO clienteDTO = new ClienteDTO();
 		if( cli != null) {
-			return iClienteDAO.getTelefonoPorCliente(cliTel);
+			clienteDTO.setTelefono(cli.getCliTel());
+			clienteDTO.setNombre(cli.getCliNom());
+			clienteDTO.setDireccion(cli.getCliDir());
+			clienteDTO.setComunaId(cli.getComuna().getCmnId());
+			return clienteDTO;
 		}
 		return null;
 	}

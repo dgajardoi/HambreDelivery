@@ -8,7 +8,7 @@ public class ClienteDTO {
 	
 	private String direccion;
 	
-	private String comunaId;
+	private int comunaId;
 
 	public String getTelefono() {
 		return telefono;
@@ -34,11 +34,11 @@ public class ClienteDTO {
 		this.direccion = direccion;
 	}
 
-	public String getComunaId() {
+	public int getComunaId() {
 		return comunaId;
 	}
 
-	public void setComunaId(String comunaId) {
+	public void setComunaId(int comunaId) {
 		this.comunaId = comunaId;
 	}
 	
